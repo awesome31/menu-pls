@@ -3,7 +3,6 @@
  * @property {any[]} items[]
  */
 
-//Circular dependecy.
 import ItemMenu from "../item-menu";
 
 /**
@@ -14,10 +13,14 @@ const ItemList = (props) => {
   const { items } = props;
 
   const renderItem = (item) => {
-    return <ItemMenu {...item} key={item.text} />;
+    return (
+      <div key={item.text}>
+        <ItemMenu {...item} />
+      </div>
+    );
   };
 
-  return <div className="w-[250px]">{items.map(renderItem)}</div>;
+  return <div className="w-[200px]">{items.map(renderItem)}</div>;
 };
 
 export default ItemList;

@@ -1,10 +1,10 @@
-import styles from "./index.module.css";
 /**
  * @typedef {object} ItemMenuProps
  * @property {string} text
  * @property {any[]} itemList
  */
 
+import useItemMenu from "../../hooks/use-item-menu";
 import ItemList from "../item-list";
 
 /**
@@ -14,17 +14,21 @@ import ItemList from "../item-list";
 const ItemMenu = (props) => {
   const { text, itemList } = props;
 
-  console.log(styles);
+  const { mouseEnter, onMouseEnter, onMouseLeave } = useItemMenu();
 
   return (
     <div
-      className={`py-2 flex justify-center items-center border relative ${styles.main} cursor-pointer`}
+      className={`py-2 flex justify-center items-center border relative cursor-pointer`}
       key={text}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
-      <div className="text-black font-bold item-text">{text}</div>
-      {itemList.length > 0 ? (
+      <div className="text-black font-bold item-text">
+        {text} {itemList.length > 0 ? ">" : ""}
+      </div>
+      {itemList.length > 0 && mouseEnter ? (
         <div
-          className={`border ${styles.itemMenu} absolute border-red-50 left-[250px] top-0 hidden`}
+          className={`border absolute border-red-50 left-[200px] top-0 block`}
         >
           <ItemList items={itemList} />
         </div>

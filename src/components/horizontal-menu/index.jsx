@@ -6,11 +6,11 @@ const HorizontalMenu = (props) => {
 
   const renderItem = (item) => {
     const { text, itemList } = item;
-    const newGroupName = text.split(" ").join("-");
 
     return (
       <div
         className={`h-14 flex justify-center items-center border relative ${styles.main} border px-4 flex justify-center cursor-pointer`}
+        key={item.text}
       >
         <div className="text-black font-bold item-text">{text}</div>
         {itemList.length > 0 ? (
